@@ -1,1 +1,253 @@
 @import "tailwindcss";
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  cursor: none !important;
+}
+
+.intro-wrapper {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 100vh;
+  background: #070707;
+  color: #fff;
+}
+
+.intro-section {
+  scroll-snap-align: start;
+  transition: backdrop-filter 1s ease;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-circle {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 64px;
+  height: 64px;
+}
+
+.progress-center-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 50%;
+  font-size: 0.75rem;
+}
+
+.logo-text {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.section-sub {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 300;
+  margin-top: 12px;
+  opacity: 0.85;
+}
+
+.small-note {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   Animated Premium Background for C2Z Intro
+   Palette:
+   - Primary Black: #090909
+   - Secondary Dark Gray: #2C2C2C
+   - Neon Green Accent: #1FB622 / #25C233
+   - Light Grey: #EEEEEE
+   ========================================================= */
+
+.animated-bg {
+  background: linear-gradient(
+    270deg,
+    #090909,
+    #2C2C2C,
+    #090909,
+    #1FB622,
+    #25C233
+  );
+  background-size: 800% 800%;
+  animation: gradientShift 14s ease infinite;
+  transition: background 0.5s ease;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.intro-section h1,
+.intro-section p {
+  color: #EEEEEE;
+}
+
+/* Neon Green */
+.button-accent,
+.accent-text {
+  color: #25C233;
+}
+
+.button-accent:hover {
+  background-color: #1FB622;
+  color: #090909;
+  transition: 0.3s ease;
+}
+
+/* Scroll Progress Circle + Neon Glow Center Button */
+
+.progress-circle {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.progress-circle svg {
+  filter: drop-shadow(0 0 10px rgba(31, 182, 34, 0.5))
+          drop-shadow(0 0 20px rgba(31, 182, 34, 0.3));
+}
+
+/* Mid Cicle */
+.progress-center-btn {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #090909;
+  border: 2px solid #25C233;
+  color: #25C233;
+  font-weight: 600;
+  /* cursor: pointer; */
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  animation: neonPulse 2.5s infinite ease-in-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(31, 182, 34, 0.6);
+}
+
+.progress-center-btn:hover {
+  background: #25C233;
+  color: #090909;
+  box-shadow: 0 0 25px rgba(31, 182, 34, 0.8),
+              0 0 50px rgba(31, 182, 34, 0.4);
+}
+
+/* Pulse Glow */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(31, 182, 34, 0.3),
+                0 0 10px rgba(31, 182, 34, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(31, 182, 34, 0.6),
+                0 0 40px rgba(31, 182, 34, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(31, 182, 34, 0.3),
+                0 0 10px rgba(31, 182, 34, 0.2);
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+
+.animated-grid {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: -1;
+  opacity: 0.2;
+  overflow: hidden;
+}
+
+.grid-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.grid-cell {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(37, 194, 51, 0.5), transparent);
+  transform: translateX(-100%);
+  animation: gridGlow 6s linear infinite;
+}
+
+@keyframes gridGlow {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+
