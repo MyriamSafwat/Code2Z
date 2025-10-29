@@ -134,7 +134,7 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
         {[...Array(10)].map((_, row) => (
           <div className="grid grid-cols-12" key={row}>
             {[...Array(12)].map((_, col) => (
-              <div className="grid-cell border border-white/10" key={col}></div>
+              <div className="grid-cell" key={col}></div>
             ))}
           </div>
         ))}
