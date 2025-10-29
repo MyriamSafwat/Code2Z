@@ -222,7 +222,7 @@ body {
   overflow: hidden;
 }
 
-.grid-row {
+.grid {
   display: flex;
   justify-content: space-evenly;
 }
