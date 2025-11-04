@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import ScrollProgressCircle from "./ScrollProgressCircle";
 import Home from "../pages/Home";
