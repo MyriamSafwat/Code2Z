@@ -20,10 +20,9 @@ export default function Testimonials() {
         <h2 className="text-2xl font-oxanium font-bold mb-2 text-center text-[#1FB622]">
           What Our Clients Say
         </h2>
-        <span className="text-center mt-0 mb-6 text-lg font-cairo">
+        <span className="text-center mt-0 mb-6 text-lg font-bold shadow-lg font-cairo">
          Real Feedback from Our Valued Clients
         </span>
-
         {/* Carousel container */}
         <div className="overflow-hidden w-full">
            <motion.div
