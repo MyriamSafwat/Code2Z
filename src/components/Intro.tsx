@@ -124,7 +124,7 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
   return (
     <motion.section
       ref={ref}
-      className="intro-section flex flex-col justify-center items-center relative min-h-screen text-white text-center overflow-hidden"
+      className="intro-section px-2 flex flex-col justify-center items-center relative min-h-screen text-white text-center overflow-hidden"
       style={{ perspective: "1000px" }}
     >
       {/* Grid - Simplified for performance (75% less cells) */}
@@ -155,13 +155,13 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
 
       {/* Title */}
       <motion.h1
-        className="font-michroma mb-5 text-5xl md:text-5xl lg:text-7xl"
+        className="font-michroma mb-5 text-5xl md:text-7xl lg:text-7xl"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={titleVariants}
         style={{
           letterSpacing: "2px",
-          textShadow: "0 8px 32px rgba(255,255,255,0.2)",
+          textShadow: "1 10px 32px rgba(56, 236, 56, 0.36)",
         }}
       >
         {title}

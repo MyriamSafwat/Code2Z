@@ -14,6 +14,11 @@ body,
   background: #0a0a0c;
 }
 
+/* Hide body scroll when intro is active */
+body:has(.intro-wrapper) {
+  overflow: hidden;
+}
+
 body {
   cursor: none !important;
   -webkit-font-smoothing: antialiased;
@@ -67,12 +72,18 @@ button {
 }
 
 .intro-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: scroll;
   height: 100vh;
   background: #0a0a0c;
   color: #fff;
+  z-index: 1000;
 }
 
 .intro-section {
