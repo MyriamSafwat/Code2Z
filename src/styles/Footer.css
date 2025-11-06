@@ -35,9 +35,9 @@
   height: 3px;
   background: linear-gradient(90deg, #1fb622, #25c233);
   margin: 0 auto 20px;
-  border: none;
-  border-radius: 50%;
-  box-shadow: none;
+  border: none; 
+  border-radius: 50%; 
+  box-shadow: none;   
 }
 
 .footer-tagline {
@@ -137,7 +137,7 @@
 }
 
 @keyframes pulseLogo {
-  0% {
+ 0% {
     transform: scale(1);
   }
   70% {
