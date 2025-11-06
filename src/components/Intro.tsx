@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import React, { useEffect, useRef, useState, memo } from "react";
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+
 import ScrollProgressCircle from "./ScrollProgressCircle";
 import Home from "../pages/Home";
 
@@ -15,8 +16,9 @@ const sectionData = [
   { id: "s5", title: "Collaborate & Grow", subtitle: "Partnerships built on trust and transparency.", subtitle2: "Together, we create lasting digital impact." },
 ];
 
-export default function Intro({ onFinish }: IntroProps) {
-  const [showHome, setShowHome] = useState(sessionStorage.getItem("introShown") === "true");
+const Intro = memo(function Intro({ onFinish }: IntroProps) {
+  // Check if user has seen intro before - if yes, skip it
+  const [showHome, setShowHome] = useState(localStorage.getItem("introShown") === "true");
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const finish = () => {
@@ -25,7 +27,8 @@ export default function Intro({ onFinish }: IntroProps) {
       introWrapper.style.transition = "opacity 1.2s ease";
       introWrapper.style.opacity = "0";
     }
-    sessionStorage.setItem("introShown", "true");
+    // Save to localStorage so intro doesn't show again on next visit
+    localStorage.setItem("introShown", "true");
     setTimeout(() => {
       setShowHome(true);
       onFinish?.();
@@ -73,7 +76,7 @@ export default function Intro({ onFinish }: IntroProps) {
       )}
     </AnimatePresence>
   );
-}
+});
 
 // COMPONENT: IntroSection
 function IntroSection({ title, subtitle, subtitle2, index }: { title: string; subtitle: string; subtitle2?: string; index: number }) {
@@ -82,40 +85,40 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
 
   const animationPresets = [
     {
-      title: { hidden: { y: -90, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 1.8, ease: "easeOut" } },
-      subtitle: { hidden: { x: 80, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 2, delay: 0.4, ease: "easeOut" } },
-      subtitle2: { hidden: { x: 80, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 2, delay: 0.4, ease: "easeOut" } },
+      title: { hidden: { y: -90, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.8, ease: "easeOut" } },
+      subtitle: { hidden: { x: 80, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } },
+      subtitle2: { hidden: { x: 80, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } },
     },
     {
-      title: { hidden: { x: -100, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 2, delay: 1.4, ease: "easeOut" } },
-      subtitle: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 1.6, ease: "easeOut" } },
-      subtitle2: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 1.6, ease: "easeOut" } },
+      title: { hidden: { x: -100, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } },
+      subtitle: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
+      subtitle2: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
     },
     {
-      title: { hidden: { x: 100, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 2, delay: 2.4, ease: "easeOut" } },
-      subtitle: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 2.6, ease: "easeOut" } },
-      subtitle2: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 2.6, ease: "easeOut" } },
+      title: { hidden: { x: 100, opacity: 0 }, visible: { x: 0, opacity: 1 }, transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } },
+      subtitle: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
+      subtitle2: { hidden: { y: 60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
     },
     {
-      title: { hidden: { y: 80, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 2, ease: "easeOut" } },
-      subtitle: { hidden: { y: -60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 2.2, ease: "easeOut" } },
-      subtitle2: { hidden: { y: -60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 2, delay: 2.2, ease: "easeOut" } },
+      title: { hidden: { y: 80, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } },
+      subtitle: { hidden: { y: -60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
+      subtitle2: { hidden: { y: -60, opacity: 0 }, visible: { y: 0, opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
     },
     {
-      title: { hidden: { rotate: -10, scale: 0.8, opacity: 0 }, visible: { rotate: 0, scale: 1, opacity: 1 }, transition: { duration: 2, delay: 2.4, ease: "easeOut" } },
-      subtitle: { hidden: { opacity: 0 }, visible: { opacity: 1 }, transition: { duration: 2, delay: 2.6, ease: "easeOut" } },
-      subtitle2: { hidden: { opacity: 0 }, visible: { opacity: 1 }, transition: { duration: 2, delay: 2.6, ease: "easeOut" } },
+      title: { hidden: { rotate: -10, scale: 0.8, opacity: 0 }, visible: { rotate: 0, scale: 1, opacity: 1 }, transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } },
+      subtitle: { hidden: { opacity: 0 }, visible: { opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
+      subtitle2: { hidden: { opacity: 0 }, visible: { opacity: 1 }, transition: { duration: 0.6, delay: 0.4, ease: "easeOut" } },
     },
   ];
 
   const { title: titleVariants, subtitle: subtitleVariants, subtitle2: subtitle2Variants } = animationPresets[index % animationPresets.length];
 
   const gradients = [
-    "linear-gradient(270deg, #090909,rgba(17,77,18,0.34), #090909)",
-    "linear-gradient(270deg, #090909,rgba(17,77,18,0.34), #090909)",
-    "linear-gradient(270deg, #090909,rgba(17,77,18,0.39), #090909)",
-    "linear-gradient(270deg, #090909,rgba(17,77,18,0.44), #090909)",
-    "linear-gradient(270deg, #090909,rgba(17,77,18,0.49), #090909)",
+    "linear-gradient(270deg, #0a0a0c,rgba(22,192,96,0.34), #0a0a0c)",
+    "linear-gradient(270deg, #0a0a0c,rgba(22,192,96,0.34), #0a0a0c)",
+    "linear-gradient(270deg, #0a0a0c,rgba(22,192,96,0.39), #0a0a0c)",
+    "linear-gradient(270deg, #0a0a0c,rgba(22,192,96,0.44), #0a0a0c)",
+    "linear-gradient(270deg, #0a0a0c,rgba(22,192,96,0.49), #0a0a0c)",
   ];
 
   return (
@@ -124,42 +127,39 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
       className="intro-section flex flex-col justify-center items-center relative min-h-screen text-white text-center overflow-hidden"
       style={{ perspective: "1000px" }}
     >
-      {/* Grid */}
+      {/* Grid - Simplified for performance (75% less cells) */}
       <motion.div
         className="animated-grid"
-        initial={{ opacity: 0, y: -24 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -24 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {[...Array(10)].map((_, row) => (
-          <div className="grid grid-cols-12" key={row}>
-            {[...Array(12)].map((_, col) => (
+        {[...Array(5)].map((_, row) => (
+          <div className="grid grid-cols-6" key={row}>
+            {[...Array(6)].map((_, col) => (
               <div className="grid-cell" key={col}></div>
             ))}
           </div>
         ))}
       </motion.div>
 
-      <motion.div
+      {/* Animated gradient - DISABLED FOR PERFORMANCE */}
+      <div
         style={{
           position: "absolute",
           inset: 0,
           background: gradients[index % gradients.length],
-          backgroundSize: "300% 300%",
           zIndex: -2,
         }}
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Title */}
       <motion.h1
-        className="font-bold"
+        className="font-michroma mb-5 text-5xl md:text-5xl lg:text-7xl"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={titleVariants}
         style={{
-          fontSize: "clamp(3rem, 6vw, 6rem)",
           letterSpacing: "2px",
           textShadow: "0 8px 32px rgba(255,255,255,0.2)",
         }}
@@ -169,7 +169,7 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
 
       {/* Subtitle */}
       <motion.p
-        className="mt-4 max-w-xl opacity-85 text-lg"
+        className="mt-4 max-w-xl opacity-85 text-xl font-electrolize"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={subtitleVariants}
@@ -180,7 +180,7 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
 
       {/* Subtitle 2 */}
       <motion.p
-        className="mt-4 max-w-xl opacity-85 text-lg"
+        className="mt-4 max-w-xl opacity-85 text-lg font-electrolize"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={subtitle2Variants}
@@ -191,3 +191,5 @@ function IntroSection({ title, subtitle, subtitle2, index }: { title: string; su
     </motion.section>
   );
 }
+
+export default Intro;

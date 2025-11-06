@@ -1,12 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Electrolize:wght@400&family=Michroma:wght@400&family=Aldrich&family=Syncopate:wght@400;700&display=swap&display=swap&display=swap");
 @import "tailwindcss";
-html, body, #root {
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  background: #0a0a0c;
 }
 
 body {
   cursor: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button {
+  cursor: none !important;
+}
+
+/* Performance Optimizations */
+* {
+  box-sizing: border-box;
+}
+
+[class*="motion"] {
+  will-change: transform, opacity;
+}
+
+[class*="transition"] {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141619;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #16c060, #23e276);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #23e276, #16c060);
 }
 
 .intro-wrapper {
@@ -14,7 +71,7 @@ body {
   scroll-behavior: smooth;
   overflow-y: scroll;
   height: 100vh;
-  background: #070707;
+  background: #0a0a0c;
   color: #fff;
 }
 
@@ -49,9 +106,9 @@ body {
   cursor: pointer;
   width: 100%;
   height: 100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   font-size: 0.75rem;
 }
@@ -73,27 +130,27 @@ body {
   position: absolute;
   bottom: 16px;
   right: 16px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.85rem;
 }
 
 /* =========================================================
-   Animated Premium Background for C2Z Intro
-   Palette:
-   - Primary Black: #090909
-   - Secondary Dark Gray: #2C2C2C
-   - Neon Green Accent: #1FB622 / #25C233
-   - Light Grey: #EEEEEE
+   C2Z Color Palette:
+   - Primary Green: #16c060
+   - Dark Background: #0a0a0c
+   - Secondary Dark: #141619
+   - Light Text: #eaeaea
+   - Accent Green: #23e276
    ========================================================= */
 
 .animated-bg {
   background: linear-gradient(
     270deg,
-    #090909,
-    #2C2C2C,
-    #090909,
-    #1FB622,
-    #25C233
+    #0a0a0c,
+    #141619,
+    #0a0a0c,
+    #16c060,
+    #23e276
   );
   background-size: 800% 800%;
   animation: gradientShift 14s ease infinite;
@@ -119,20 +176,122 @@ body {
   }
 }
 
-.intro-section h1,
-.intro-section p {
-  color: #EEEEEE;
+/* Animated Gradient for Hero Title */
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradientFlow 3s ease infinite;
 }
 
-/* Neon Green */
+@keyframes gradientFlow {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* Animated Gradient Border */
+.animate-gradient-border {
+  animation: gradientBorderFlow 2s linear infinite;
+}
+
+@keyframes gradientBorderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Spinning Border Effect */
+.animate-spin-border {
+  animation: spinBorder 3s linear infinite;
+}
+
+@keyframes spinBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Traveling Border Effect */
+.animate-border-travel-horizontal {
+  animation: travelHorizontal 2s ease-in-out infinite;
+}
+
+.animate-border-travel-vertical {
+  animation: travelVertical 2s ease-in-out infinite;
+}
+
+@keyframes travelHorizontal {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes travelVertical {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Slow Gradient Animation for Button Border */
+.animate-gradient-slow {
+  background-size: 200% auto;
+  animation: gradientSlow 4s linear infinite;
+}
+
+@keyframes gradientSlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.intro-section h1,
+.intro-section p {
+  color: #eaeaea;
+}
+
+/* Accent Green */
 .button-accent,
 .accent-text {
-  color: #25C233;
+  color: #16c060;
 }
 
 .button-accent:hover {
-  background-color: #1FB622;
-  color: #090909;
+  background-color: #23e276;
+  color: #0a0a0c;
   transition: 0.3s ease;
 }
 
@@ -152,48 +311,43 @@ body {
 }
 
 .progress-circle svg {
-  filter: drop-shadow(0 0 10px rgba(31, 182, 34, 0.5))
-          drop-shadow(0 0 20px rgba(31, 182, 34, 0.3));
+  filter: drop-shadow(0 0 10px rgba(22, 192, 96, 0.5))
+    drop-shadow(0 0 20px rgba(22, 192, 96, 0.3));
 }
 
-/* Mid Cicle */
+/* Mid Circle */
 .progress-center-btn {
   position: absolute;
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #090909;
-  border: 2px solid #25C233;
-  color: #25C233;
+  background: #0a0a0c;
+  border: 2px solid #16c060;
+  color: #16c060;
   font-weight: 600;
-  /* cursor: pointer; */
   font-size: 0.85rem;
   text-transform: uppercase;
   animation: neonPulse 2.5s infinite ease-in-out;
   transition: all 0.3s ease;
-  box-shadow: 0 0 12px rgba(31, 182, 34, 0.6);
+  box-shadow: 0 0 12px rgba(22, 192, 96, 0.6);
 }
 
 .progress-center-btn:hover {
-  background: #25C233;
-  color: #090909;
-  box-shadow: 0 0 25px rgba(31, 182, 34, 0.8),
-              0 0 50px rgba(31, 182, 34, 0.4);
+  background: #16c060;
+  color: #0a0a0c;
+  box-shadow: 0 0 25px rgba(22, 192, 96, 0.8), 0 0 50px rgba(22, 192, 96, 0.4);
 }
 
 /* Pulse Glow */
 @keyframes neonPulse {
   0% {
-    box-shadow: 0 0 5px rgba(31, 182, 34, 0.3),
-                0 0 10px rgba(31, 182, 34, 0.2);
+    box-shadow: 0 0 5px rgba(22, 192, 96, 0.3), 0 0 10px rgba(22, 192, 96, 0.2);
   }
   50% {
-    box-shadow: 0 0 20px rgba(31, 182, 34, 0.6),
-                0 0 40px rgba(31, 182, 34, 0.5);
+    box-shadow: 0 0 20px rgba(22, 192, 96, 0.6), 0 0 40px rgba(22, 192, 96, 0.5);
   }
   100% {
-    box-shadow: 0 0 5px rgba(31, 182, 34, 0.3),
-                0 0 10px rgba(31, 182, 34, 0.2);
+    box-shadow: 0 0 5px rgba(22, 192, 96, 0.3), 0 0 10px rgba(22, 192, 96, 0.2);
   }
 }
 
@@ -208,8 +362,9 @@ body {
   z-index: 9999;
   mix-blend-mode: difference;
   transition: transform 0.2s ease, background 0.3s ease;
+  will-change: transform;
+  contain: layout style paint;
 }
-
 
 .animated-grid {
   position: absolute;
@@ -220,6 +375,8 @@ body {
   z-index: -1;
   opacity: 0.2;
   overflow: hidden;
+  will-change: opacity, transform;
+  contain: layout style;
 }
 
 .grid {
@@ -239,15 +396,65 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(37, 194, 51, 0.5), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(22, 192, 96, 0.5),
+    transparent
+  );
   transform: translateX(-100%);
   animation: gridGlow 6s linear infinite;
 }
 
 @keyframes gridGlow {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.section-width {
+  @apply max-w-5xl mx-auto;
+}
+/* Futuristic fonts */
+.font-orbitron {
+  font-family: "Orbitron", monospace;
+  font-weight: 500;
 }
 
+.font-orbitron-bold {
+  font-family: "Orbitron", monospace;
+  font-weight: 700;
+}
 
+.font-electrolize {
+  font-family: "Electrolize", sans-serif;
+  font-weight: 500;
+}
+
+.font-michroma {
+  font-family: "Michroma", monospace;
+  font-weight: 600;
+}
+
+.font-aldrich {
+  font-family: "Aldrich", sans-serif;
+  font-weight: 500;
+  @apply antialiased;
+}
+
+.font-syncopate {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 500;
+  @apply antialiased;
+}
+
+.font-syncopate-bold {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  @apply antialiased;
+}

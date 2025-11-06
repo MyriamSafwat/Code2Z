@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { memo } from 'react';
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-export default function CustomCursor() {
+
+const CustomCursor = memo(function CustomCursor() {
   const [hovered, setHovered] = useState(false);
 
   const x = useMotionValue(-100);
@@ -13,8 +15,8 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      x.set(e.clientX - 15);
-      y.set(e.clientY - 15);
+      x.set(e.clientX - 10);
+      y.set(e.clientY - 10);
     };
 
     const handleHover = () => setHovered(true);
@@ -37,7 +39,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      {...({ className: "custom-cursor" } as any)}
+      className="custom-cursor"
       style={{
         translateX: springX,
         translateY: springY,
@@ -45,10 +47,12 @@ export default function CustomCursor() {
         opacity: hovered ? 0.9 : 0.6,
         background: "radial-gradient(circle,rgba(37, 194, 50, 0.74) 0%, #1FB622 80%)",
         boxShadow: hovered
-          ? "0 0 40px 10px rgba(37,194,51,0.6)"
-          : "0 0 20px 4px rgba(37,194,51,0.3)",
+          ? "0 0 20px 5px rgba(37,194,51,0.6)"
+          : "0 0 10px 2px rgba(37,194,51,0.3)",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     />
   );
-}
+});
+
+export default CustomCursor;

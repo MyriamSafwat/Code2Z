@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import { memo } from 'react';
+import { useEffect, useState, useRef } from "react";
 
 type Props = {
   containerId?: string;
@@ -10,7 +11,7 @@ const STROKE = 6;
 const RADIUS = (SIZE - STROKE) / 2;
 const CIRCUM = 2 * Math.PI * RADIUS;
 
-export default function ScrollProgressCircle({ containerId = "intro-wrapper", onSkip }: Props) {
+const ScrollProgressCircle = memo(function ScrollProgressCircle({ containerId = "intro-wrapper", onSkip }: Props) {
   const [progress, setProgress] = useState<number>(0);
   const rafRef = useRef<number | null>(null);
 
@@ -84,4 +85,6 @@ export default function ScrollProgressCircle({ containerId = "intro-wrapper", on
       </button>
     </div>
   );
-}
+});
+
+export default ScrollProgressCircle;
